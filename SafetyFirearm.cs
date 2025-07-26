@@ -37,7 +37,6 @@ namespace SafetyFirearm
             CreateOrLoadTranslationsFile();
 
             SSSettings.Register();
-            Log.Info("Safety Firearm by izzzi_ ACTIVATED!");
             base.OnEnabled();
         }
 
@@ -58,7 +57,7 @@ namespace SafetyFirearm
                 if (!File.Exists(path))
                 {
                     var defText = @"
-#//SafetyFirarm by izzzi_lol LANG FILE
+#//SafetyFirearm by izzzi_lol LANG FILE
 #//Tip: use \n for newline
 
 # Server Specs
