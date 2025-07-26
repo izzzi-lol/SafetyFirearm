@@ -26,8 +26,8 @@ namespace SafetyFirearm
 
             _settings = [
                 new HeaderSetting("Safety Firearm"),
-                new KeybindSetting(200, lang.ChangeModeKeybind, UnityEngine.KeyCode.B),
-                new TwoButtonsSetting(201, lang.FuseByDefault, lang.FuseByDefaultOn,
+                new KeybindSetting(SafetyFirearm.Instance.Config.KeybindCode, lang.ChangeModeKeybind, UnityEngine.KeyCode.B),
+                new TwoButtonsSetting(SafetyFirearm.Instance.Config.FuseByDefaultCode, lang.FuseByDefault, lang.FuseByDefaultOn,
                 lang.FuseByDefaultOff, defaultIsSecond: true)
                 ];
 
@@ -42,7 +42,9 @@ namespace SafetyFirearm
 
         public static void KeybindRecieved(ReferenceHub referenceHub, ServerSpecificSettingBase settingBase)
         {
-            if (settingBase is not SSKeybindSetting keybindSetting || keybindSetting.SettingId != 200 || !keybindSetting.SyncIsPressed) return;
+            if (settingBase is not SSKeybindSetting keybindSetting 
+            || keybindSetting.SettingId != SafetyFirearm.Instance.Config.KeybindCode
+            || !keybindSetting.SyncIsPressed) return;
             if (!Player.TryGet(referenceHub, out Player player)) return;
             if (player.CurrentItem != null && player.IsAlive && player.CurrentItem is Firearm firearm)
             {

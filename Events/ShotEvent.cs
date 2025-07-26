@@ -38,7 +38,8 @@ namespace SafetyFirearm.Events
                 if (firearm.FirearmType.Equals(FirearmType.Revolver)) return;
                 if (!SafetyFirearm.SafetyModeList.ContainsKey(firearm.Serial))
                 {
-                    SSTwoButtonsSetting safemodeselect = ServerSpecificSettingsSync.GetSettingOfUser<SSTwoButtonsSetting>(user.ReferenceHub, 201);
+                    SSTwoButtonsSetting safemodeselect = ServerSpecificSettingsSync
+                    .GetSettingOfUser<SSTwoButtonsSetting>(user.ReferenceHub, SafetyFirearm.Instance.Config.FuseByDefaultCode);
                     SafetyFirearm.SafetyModeList.Add(firearm.Serial, safemodeselect.SyncIsA);
                 }
                 if (SafetyFirearm.SafetyModeList[firearm.Serial])
