@@ -46,12 +46,5 @@ namespace SafetyFirearm.Events
                 else user.ShowHint(lang.FuseSwitchOff, 2);
             }
         }
-
-        public void RoundEnd()
-        {
-            Log.Info($"Clearing {SafetyFirearm.SafetyModeList.Count} entries...");
-            SafetyFirearm.SafetyModeList.Clear();
-            return;
-        }
     }
 }

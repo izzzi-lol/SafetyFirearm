@@ -32,7 +32,7 @@ namespace SafetyFirearm
 
             Exiled.Events.Handlers.Player.Shooting += shotEvent.Shooting;
             Exiled.Events.Handlers.Player.ChangingItem += shotEvent.ChangingItems;
-            Exiled.Events.Handlers.Server.RestartingRound += shotEvent.RoundEnd;
+            Exiled.Events.Handlers.Server.RestartingRound += RoundEnd;
 
             CreateOrLoadTranslationsFile();
 
@@ -46,7 +46,7 @@ namespace SafetyFirearm
             SSSettings.Unregister();
             Exiled.Events.Handlers.Player.Shooting -= shotEvent.Shooting;
             Exiled.Events.Handlers.Player.ChangingItem -= shotEvent.ChangingItems;
-            Exiled.Events.Handlers.Server.RestartingRound -= shotEvent.RoundEnd;
+            Exiled.Events.Handlers.Server.RestartingRound -= RoundEnd;
             shotEvent = null;
             base.OnDisabled();
         }
@@ -86,6 +86,13 @@ not_have_fuse: 'This firearm does not have a safety' # Appears when trying to sw
             {
                 _translation = new Lang();
             }
+        }
+        
+        public void RoundEnd()
+        {
+            Log.Info($"Clearing {SafetyFirearm.SafetyModeList.Count} entries...");
+            SafetyFirearm.SafetyModeList.Clear();
+            return;
         }
     }
 }
