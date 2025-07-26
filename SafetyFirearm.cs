@@ -30,11 +30,11 @@ namespace SafetyFirearm
         {
             shotEvent = new Events.ShotEvent();
 
+            CreateOrLoadTranslationsFile();
+
             Exiled.Events.Handlers.Player.Shooting += shotEvent.Shooting;
             Exiled.Events.Handlers.Player.ChangingItem += shotEvent.ChangingItems;
             Exiled.Events.Handlers.Server.RestartingRound += RoundEnd;
-
-            CreateOrLoadTranslationsFile();
 
             SSSettings.Register();
             base.OnEnabled();
